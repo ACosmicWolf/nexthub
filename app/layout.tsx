@@ -1,3 +1,4 @@
+import NavMenu from "./NavMenu";
 import "./globals.css";
 import { Roboto } from "next/font/google";
 
@@ -18,7 +19,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>{children}</body>
+      <body className={roboto.className}>
+        <div className="m-auto w-5/6 lg:w-7/12">
+          <NavMenu />
+          {children}
+        </div>
+      </body>
     </html>
   );
 }
