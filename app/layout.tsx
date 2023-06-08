@@ -1,4 +1,4 @@
-import NavMenu from "./NavMenu";
+import Navbar from "@/components/Navbar";
 import "./globals.css";
 import { Roboto } from "next/font/google";
 
@@ -19,9 +19,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={roboto.className + " dark:bg-black dark:text-white"}>
         <div className="m-auto w-5/6 lg:w-7/12">
-          <NavMenu />
+          <Navbar />
           {children}
         </div>
       </body>
