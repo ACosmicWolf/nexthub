@@ -42,61 +42,65 @@ export default function Navbar() {
             </Link>
           ))}
         </div>
-        <div>
-          <Link
-            href={"/"}
-            className="font-semibold text-xl hover:text-[22px] transition-all ease-in-out"
-          >
-            NextHub
-          </Link>
-        </div>
-        <div className="hidden lg:flex ">
-          <Link
-            href="/login"
-            className="mx-5 text-sm p-2 rounded bg-cyan-100 font-semibold text-blue-600 dark:bg-cyan-200 dark:text-blue-800 "
-          >
-            Login
-          </Link>
 
-          {/* Toggle Styles present in globals.css as code I copied from https://codepen.io/mrozilla/pen/OJJNjRb was too difficult to convert to tailwind was too difficult */}
-          <input
-            type="checkbox"
-            onClick={() => {
-              localStorage.theme = theme === "dark" ? "light" : "dark";
-              setTheme(theme === "dark" ? "light" : "dark");
-            }}
-            checked={theme === "dark"}
-            id="toggle"
-          />
-          <label htmlFor="toggle" className="sr-only">
-            Toggle theme
-          </label>
-        </div>
+        <Link
+          href={"/"}
+          className="font-semibold text-xl hover:text-[22px] transition-all ease-in-out"
+        >
+          NextHub
+        </Link>
 
-        <div className="lg:hidden">
-          <button
-            className="text-gray-500  relative"
-            onClick={() => {
-              setIsMenuOpen(!isMenuOpen);
-            }}
-          >
-            <span className="sr-only">Open main menu</span>
-            <div
-              className={`${genericHamburgerLine} ${
-                isMenuOpen ? "rotate-45 translate-y-1" : "opacity-100"
-              }`}
+        <div className="flex gap-5">
+          <div className="hidden lg:block">
+            <Link
+              href="/login"
+              className="mx-5 text-sm p-2 rounded bg-cyan-100 font-semibold text-blue-600 dark:bg-cyan-200 dark:text-blue-800 "
+            >
+              Login
+            </Link>
+          </div>
+
+          <div className="lg:hidden ">
+            <button
+              className="text-gray-500  relative"
+              onClick={() => {
+                setIsMenuOpen(!isMenuOpen);
+              }}
+            >
+              <span className="sr-only">Open main menu</span>
+              <div
+                className={`${genericHamburgerLine} ${
+                  isMenuOpen ? "rotate-45 translate-y-1" : "opacity-100"
+                }`}
+              />
+              <div
+                className={`${genericHamburgerLine} ${
+                  isMenuOpen ? "opacity-0" : "opacity-100"
+                }`}
+              />
+              <div
+                className={`${genericHamburgerLine} ${
+                  isMenuOpen ? "-rotate-45 -translate-y-2" : "opacity-100"
+                }`}
+              />
+            </button>
+          </div>
+
+          <div>
+            {/* Toggle Styles present in globals.css as code I copied from https://codepen.io/mrozilla/pen/OJJNjRb was too difficult to convert to tailwind was too difficult */}
+            <input
+              type="checkbox"
+              onClick={() => {
+                localStorage.theme = theme === "dark" ? "light" : "dark";
+                setTheme(theme === "dark" ? "light" : "dark");
+              }}
+              checked={theme === "dark"}
+              id="toggle"
             />
-            <div
-              className={`${genericHamburgerLine} ${
-                isMenuOpen ? "opacity-0" : "opacity-100"
-              }`}
-            />
-            <div
-              className={`${genericHamburgerLine} ${
-                isMenuOpen ? "-rotate-45 -translate-y-2" : "opacity-100"
-              }`}
-            />
-          </button>
+            <label htmlFor="toggle" className="sr-only">
+              Toggle theme
+            </label>
+          </div>
         </div>
       </nav>
       {isMenuOpen && (

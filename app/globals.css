@@ -4,7 +4,7 @@
 
 /* https://codepen.io/mrozilla/pen/OJJNjRb */
 #toggle {
-  --size: 2rem;
+  --size: 1.5rem;
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
