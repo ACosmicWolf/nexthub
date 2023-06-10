@@ -5,10 +5,13 @@ import {
   GithubAuthProvider,
   GoogleAuthProvider,
   signInWithRedirect,
+  signOut,
 } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import {
+  useAuthState,
   useSignInWithGithub,
   useSignInWithGoogle,
 } from "react-firebase-hooks/auth";
@@ -113,16 +116,54 @@ export function ProfileButton({
   displayName: string | null;
   photoURL: string;
 }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
   return (
-    <button className="flex items-center gap-2 p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-950 transition-all group">
-      <Image
-        width={30}
-        height={30}
-        src={photoURL}
-        alt="Profile Picture"
-        referrerPolicy="no-referrer"
-        className="rounded-full border-2 border-gray-200 dark:border-gray-800"
-      />
-    </button>
+    <div className="relative">
+      <button
+        className="flex items-center p-1 rounded-md hover:bg-gray-100 dark:hover:bg-gray-950 transition-all"
+        onClick={() => {
+          setMenuOpen(!menuOpen);
+        }}
+      >
+        <Image
+          width={30}
+          height={30}
+          src={photoURL}
+          alt="Profile Picture"
+          referrerPolicy="no-referrer"
+          className="rounded-full border-2 border-gray-200 dark:border-gray-800"
+        />
+      </button>
+      {menuOpen && (
+        <div className="absolute mt-2 w-48 rounded-md shadow-lg bg-white dark:bg-gray-900 ring-1 ring-black ring-opacity-5 right-0">
+          <div className="py-1">
+            <Link
+              href="/profile"
+              className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              Profile
+            </Link>
+
+            <Link
+              href="/settings"
+              className="block px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              Settings
+            </Link>
+          </div>
+          <div className="border-t border-gray-100 dark:border-gray-800 py-1">
+            <button
+              onClick={() => {
+                signOut(auth);
+              }}
+              className="block w-full text-left px-4 py-2 text-sm text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              Sign out
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
