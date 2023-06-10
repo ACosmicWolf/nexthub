@@ -7,7 +7,8 @@ import {
 } from "firebase/firestore";
 import { getStorage, ref } from "firebase/storage";
 
-import { Category, Post, User } from "./firebasetypes";
+import { Category, Post } from "./firebasetypes";
+import { getAuth, User } from "firebase/auth";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_APIKEY,
@@ -41,3 +42,6 @@ const storage = getStorage(app);
 // Export storage reference
 export const contentStorageRef = ref(storage, "content");
 export const bannerStorageRef = ref(storage, "banner");
+
+// Auth
+export const auth = getAuth(app);

@@ -1,10 +1,3 @@
-export interface User {
-  id: string;
-  name: string;
-  email: string;
-  imageUrl: string;
-}
-
 export interface Category {
   id: string;
   name: string;

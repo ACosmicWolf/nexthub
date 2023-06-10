@@ -1,4 +1,12 @@
 import type { StorybookConfig } from "@storybook/nextjs";
+import path from "path";
+
+const aliases = {
+  "@/app": path.resolve(__dirname, "../app"),
+  "@/components": path.resolve(__dirname, "../components"),
+  "@/lib": path.resolve(__dirname, "../lib"),
+};
+
 const config: StorybookConfig = {
   stories: [
     "../components/**/*.mdx",
@@ -25,5 +33,18 @@ const config: StorybookConfig = {
   docs: {
     autodocs: "tag",
   },
+  webpackFinal: async (config) => {
+    return {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve?.alias,
+          ...aliases,
+        },
+      },
+    };
+  },
 };
+
 export default config;
