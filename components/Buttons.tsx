@@ -9,7 +9,7 @@ import {
 } from "firebase/auth";
 import Image from "next/image";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   useAuthState,
   useSignInWithGithub,
@@ -164,6 +164,40 @@ export function ProfileButton({
           </div>
         </div>
       )}
+    </div>
+  );
+}
+
+/* Theme Toggle Button */
+export function ThemeToggleButton() {
+  const [theme, setTheme] = useState("dark");
+
+  useEffect(() => {
+    if (localStorage.theme === "light") {
+      document.documentElement.dataset.mode = "";
+      setTheme("light");
+    } else {
+      document.documentElement.dataset.mode = "dark";
+      setTheme("dark");
+    }
+  }, [theme]);
+
+  return (
+    <div className="">
+      {/* Toggle Styles present in globals.css as code I copied from https://codepen.io/mrozilla/pen/OJJNjRb was too difficult to convert to tailwind was too difficult */}
+
+      <input
+        type="checkbox"
+        onClick={() => {
+          localStorage.theme = theme === "dark" ? "light" : "dark";
+          setTheme(theme === "dark" ? "light" : "dark");
+        }}
+        defaultChecked={theme === "dark"}
+        id="toggle"
+      />
+      <label htmlFor="toggle" className="sr-only">
+        Toggle theme
+      </label>
     </div>
   );
 }

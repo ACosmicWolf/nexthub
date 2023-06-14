@@ -10,6 +10,12 @@ const roboto = Roboto({
 export const metadata = {
   title: "NextHub",
   description: "A dev.to clone built with Next.js, firebase and tailwindcss",
+  URL: "https://nexthub.vercel.app",
+  author: "Arsh Mehta <ACosmicWolf>",
+  keywords:
+    "nextjs, firebase, tailwindcss, typescript, react, vercel, blog, dev.to clone",
+  themeColor: "#000000",
+  siteName: "NextHub",
 };
 
 export default function RootLayout({
